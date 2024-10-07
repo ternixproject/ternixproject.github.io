@@ -1,5 +1,3 @@
 ## Hi there 👋
 
-<!--
-**ternixproject** is _in the works_ and will be coming soon.
--->
+_ternixproject_ is **in the works** and will be coming soon.
