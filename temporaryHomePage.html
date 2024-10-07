@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | TernixProject</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #0D1B2A;
+            overflow: hidden;
+            position: relative;
+	    user-select: none;
+            cursor: pointer;
+        }
+
+        h1 {
+            color: white;
+            font-family: 'Arial', sans-serif;
+            font-size: 48px;
+            position: relative;
+            z-index: 1;
+            margin: 0;
+            text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.5);
+            opacity: 0;
+        }
+
+        p {
+            color: white;
+            font-family: 'Arial', sans-serif;
+            font-size: 24px;
+            position: relative;
+            z-index: 1;
+            margin-top: 10px;
+            text-shadow: 1px 1px 5px rgba(255, 255, 255, 0.5);
+            opacity: 0;
+            transition: opacity 1s ease-in;
+        }
+
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .square {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.2);
+            filter: blur(5px);
+        }
+
+        .star {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            filter: blur(3px);
+        }
+    </style>
+</head>
+<body>
+    <h1 id="title">Ternix Project.</h1>
+    <p id="coming-soon">Coming Soon</p>
+    <div class="background" id="background"></div>
+
+    <script>
+        function createSquare() {
+            const square = document.createElement('div');
+            const size = Math.random() * 50 + 20;
+            square.className = 'square';
+            square.style.width = `${size}px`;
+            square.style.height = `${size}px`;
+            square.style.left = `${Math.random() * 100}vw`;
+            square.style.top = `${Math.random() * 100}vh`;
+            document.getElementById('background').appendChild(square);
+        }
+
+        function createStar() {
+            const star = document.createElement('div');
+            const size = Math.random() * 10 + 5;
+            star.className = 'star';
+            star.style.width = `${size}px`;
+            star.style.height = `${size}px`;
+            star.style.left = `${Math.random() * 100}vw`;
+            star.style.top = `${Math.random() * 100}vh`;
+            document.getElementById('background').appendChild(star);
+        }
+
+        function generateElements() {
+            const background = document.getElementById('background');
+            background.innerHTML = '';
+
+            const screenWidth = window.innerWidth;
+            let numSquares = 15;
+            let numStars = 50;
+
+            if (screenWidth < 600) {
+                numSquares = 5;
+                numStars = 20;
+            } else if (screenWidth < 900) {
+                numSquares = 10;
+                numStars = 30;
+            }
+
+            for (let i = 0; i < numSquares; i++) {
+                createSquare();
+            }
+            for (let i = 0; i < numStars; i++) {
+                createStar();
+            }
+        }
+
+        generateElements();
+        window.addEventListener('resize', generateElements);
+
+        function typingEffect(element) {
+            const text = element.textContent;
+            element.textContent = '';
+            let index = 0;
+            let speed = 150;
+
+            function type() {
+                if (index < text.length) {
+                    element.textContent += text.charAt(index);
+                    index++;
+                    speed = Math.max(30, speed - 3);
+                    setTimeout(type, speed);
+                } else {
+                    document.getElementById('coming-soon').style.opacity = 1;
+                }
+            }
+
+            type();
+        }
+
+        const titleElement = document.getElementById('title');
+        titleElement.style.opacity = 1;
+        typingEffect(titleElement);
+
+        document.addEventListener('mousemove', (e) => {
+            const x = (e.clientX / window.innerWidth) * 100;
+            const y = (e.clientY / window.innerHeight) * 100;
+
+            const squares = document.querySelectorAll('.square');
+            const stars = document.querySelectorAll('.star');
+
+            squares.forEach(square => {
+                square.style.transform = `translate(-${x * 0.5}%, -${y * 0.5}%)`;
+            });
+
+            stars.forEach(star => {
+                star.style.transform = `translate(-${x * 1.5}%, -${y * 1.5}%)`;
+            });
+        });
+    </script>
+</body>
+</html>
