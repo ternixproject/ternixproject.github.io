@@ -75,18 +75,20 @@ function updateCountdown() {
         document.querySelector('.timer').textContent = 'Website now updating...';
         clearInterval(interval);
 
-        /* Optionally hide the timer after showing the update message
+        // Optionally hide the timer after showing the update message
         setTimeout(() => {
             document.querySelector('.timer').setAttribute('hidden', true);
-        }, 5000); // Adjust delay as needed*/
+        }, 5000); // Adjust delay as needed
 
         return;
     }
 
     // Calculate hours, minutes, and seconds
-    const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    consttimeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((timeRemaining % (1000 * 60))); //Determine the appropriate labels for hours and minutes
+    const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000); // Proper division to get seconds
+
+    // Determine the appropriate labels for hours and minutes
     let hourLabel = (hours === 1) ? 'hr' : 'hrs';
     let minuteLabel = (minutes === 1) ? 'm' : 'm';
 
@@ -113,8 +115,7 @@ function startCountdown() {
 
     // If the target date is in the future, start the countdown
     interval = setInterval(updateCountdown, 1000);
-    updateCountdown(); // Call immediately to avoid 1s delay
-}
+    updateCountdown(); // Call immediately to avoid}
 
 // Start the countdown
 startCountdown();
