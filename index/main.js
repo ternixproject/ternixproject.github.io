@@ -84,7 +84,7 @@ function updateCountdown() {
     }
 
     // Calculate hours, minutes, and seconds
-    consttimeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000); // Proper division to get seconds
 
