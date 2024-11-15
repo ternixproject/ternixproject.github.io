@@ -61,7 +61,7 @@ document.addEventListener('mousemove', (e) => {
 
 
 // Live update countdown
-const targetDate = new Date(Date.UTC(2024, 11, 15, 14, 15, 0)); // Set the target date and time in UTC
+const targetDate = new Date(Date.UTC(2024, 11, 15, 14, 35, 0)); // Set the target date and time in UTC
 const description = "Time until testing is over";
 let interval;
 
