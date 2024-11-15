@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale= 1.0">
+    <title>Home | TernixProject</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="shortcut icon" href="terminal-solid.png" type="image/png">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="text-container">
+        <h1>Ternix Project.</h1>
+        <p>Coming Soon</p>
+    </div>
+
+    <div class="timer-container">
+        <div class="timer" hidden>0hrs:0m:0s</div>
+    </div>
+
+    <div class="buttons">
+        <div class="auth-buttons">
+            <button id="login-button">Login</button>
+            <button id="signup-button">Sign Up</button>
+        </div>
+
+        <div class="social-icons">
+            <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="https://github.com" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+        </div>
+    </div>
+
+    <div class="background" id="background"></div>
+
+    <script src="main.js"></script>
+    <script src=""></script>
+<script>
+    const interval = setInterval(updateCountdown, 1000);
+    const targetDate = new Date(Date.UTC(2024, 9, 9, 18, 45, 0)); // Set the target date and time (October 9, 2024, 17:50 UTC)
+    const description = "Time until testing is over"
+
+    // Function to update the countdown
+    function updateCountdown() {
+        const now = new Date();
+        const timeRemaining = targetDate - now;
+
+        // Calculate hours, minutes, and seconds
+        const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+        // Determine the appropriate labels for hours and minutes
+        let hourLabel = (hours === 1) ? 'hr' : 'hrs';
+        let minuteLabel = (minutes === 1) ? 'm' : 'm';
+
+        // Adjust the display based on the remaining time
+        let timerText;
+        if (hours > 0) {
+            timerText = `${description}: ${hours}${hourLabel}:${minutes}${minuteLabel}:${seconds}s`;
+        } else {
+            // When hours are 0, always use 'hrs'
+            timerText = `${description}: 0hrs:${minutes}${minuteLabel}:${seconds}s`;
+        }
+
+        document.querySelector('.timer').textContent = timerText;
+
+        // If the countdown is finished, show 0hr:0m:0s and stop the countdown
+        if (timeRemaining < 0) {
+            document.querySelector('.timer').textContent = 'Website now updating...';
+            clearInterval(interval);
+        } else {
+            document.querySelector('.timer').removeAttribute('hidden');
+        }
+    }
+
+    // Update the countdown immediately and every second
+    updateCountdown();
+</script>
+</body>
+</html>
