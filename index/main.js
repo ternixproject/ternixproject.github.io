@@ -75,10 +75,10 @@ function updateCountdown() {
         document.querySelector('.timer').textContent = 'Website now updating...';
         clearInterval(interval);
 
-        // Optionally hide the timer after showing the update message
+        /* Optionally hide the timer after showing the update message
         setTimeout(() => {
             document.querySelector('.timer').setAttribute('hidden', true);
-        }, 5000); // Adjust delay as needed
+        }, 5000); // Adjust delay as needed*/
 
         return;
     }
